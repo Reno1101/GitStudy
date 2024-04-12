@@ -35,6 +35,7 @@ body, * {
 .menu .item{
   width: 25%;
   border-left: solid 1px white;
+  position: relative;
 }
 
 .menu .item:first-child{
@@ -51,20 +52,53 @@ body, * {
 }
 
 
+
+
+
+
 .sub_menu {
   background-color: rgb(156, 39, 39);
   display: none;
+  width: 200%;
+  position: absolute;
+  left: -50%;
 }
+
 
 
 .sub_menu .sub_item{
   border-top: 1px white;
 }
 
-
 .sub_menu .sub_item:hover{
   background-color: rgb(146, 146, 146);
 }
+
+
+
+
+
+
+.dssv_table{
+  margin: auto;
+  border: 1px solid orange;
+  width: 50%;
+}
+
+
+/* .dssv_table, th{} */
+.dssv_table .first_row{
+  background-color: orange;
+  color: white;
+}
+
+.dssv_table, th, td{
+  padding: 5px;
+  border: 1px solid orange;
+  border-collapse: collapse;
+}
+
+
 
 
 
