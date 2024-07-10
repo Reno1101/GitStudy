@@ -1,0 +1,172 @@
+body, * {
+    margin: 0;
+    padding: 0;
+}
+
+
+
+.header {
+    background-color: rgb(55, 224, 168);
+    height: 300px;
+    border-bottom-left-radius: 50%;
+    display: flex;
+
+}   
+
+
+.header .intro {
+    width: 50%;
+
+    /* margin-top: 30%; */
+    margin-left: 20%;
+
+
+    /* text-align: center; */
+    position: relative;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.header .contact {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: center;
+    gap: 20px;
+    padding-right: 150px;
+}
+
+.name {
+    font-size: 50px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.hello {
+    font-size: 20px;
+    font-family: monospace;
+}
+
+.header .contact i {
+    font-size: 50px;
+}
+
+
+
+
+/* -------information------- */
+.top {
+    height: 100px;
+    line-height: 100px;
+    background-color: #447097;
+    color: rgb(206, 250, 206);
+
+    margin-block: 20px;
+    text-align: center;
+    border-radius: 50%;
+}
+
+
+
+
+/* ----------main----------- */
+
+.container {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+
+
+/* ---------left-------- */
+
+.left_content {
+    background-color: rgb(196, 196, 196);
+    width: 60%;
+}
+
+
+
+.title {
+    background-color: orange;
+    padding: 8px 16px;
+    color: white;
+}
+
+
+
+
+.left_content .item_list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+
+
+.left_content .item_list .item {
+    width: 30%;
+    background-color: cyan;
+    margin-top: 10px;
+}
+
+
+.left_content .item_list .item img {
+    width: 100%;
+    border: solid black 1px;
+    box-sizing: border-box;
+}
+
+
+
+/* ---------right-------- */
+
+.right_content {
+    background-color: rgb(230, 230, 230);
+    width: 30%;
+}
+
+
+.status_list {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.status {
+    display: flex;
+    align-items: center;
+    border: solid 2px orange;
+    padding: 16px;
+    margin-top: 10px;
+
+}
+
+
+.status .avatar {
+    width: 50px;
+    height: 50px;;
+    background-color: cyan;
+    border-radius: 50%;
+}
+
+
+.footer {
+    height: 100px;
+    line-height: 100px;
+    background-color: gray;
+    color: white;
+    text-align: center;
+
+    font-size: 50px;
+    font-family: monospace;
+}
+
+
+
+
+
+
+

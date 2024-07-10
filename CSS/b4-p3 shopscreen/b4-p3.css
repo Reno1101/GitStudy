@@ -1,0 +1,170 @@
+body, * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    }
+
+
+
+
+
+
+
+
+.navbar{
+    display: flex;
+    background-color: aqua;
+
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    
+    font-size: larger;
+    
+}
+
+
+/* ------------------------------------------- */
+
+
+.navbar .navlink{
+    width: 20%;
+
+    border-left: solid 1px white;
+    
+    position: relative;
+}
+
+.navbar .navlink:first-child{
+    border-left: none;
+}
+
+.navbar .navlink:hover{
+    background-color:rgb(255, 251, 1);
+    color: red;
+  }
+
+
+
+
+/* ---subnav edit---------------------------------------- */
+.subnav {
+    background-color: yellowgreen;
+    display: none;
+    width: 200%;
+    
+
+    position: absolute;
+    left: -50%;
+}
+
+
+/* ---make subnav visible----------------------------------------- */
+.navbar .navlink:hover .subnav{
+    display:block;
+}
+/* ------------------------------------------- */
+
+
+.subnav .subnavlink{
+    border-top: solid 2px white ;
+}
+
+.subnav .subnavlink:hover{background-color: gray;}
+
+/* ------------------------------------------- */
+
+
+img{
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+
+/* ------------------------------------------- */
+/* ------------------------------------------- */
+/* ------------------------------------------- */
+
+
+
+
+.card-container{
+    padding: 20px 80px;
+
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    gap: 20px;
+
+
+}
+
+/* card style */
+.card{
+    width: 30%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px black;
+
+    
+    /* fix img to fit  if img flow out side*/
+    overflow: hidden;
+
+
+    position: relative;
+}
+
+
+/* display img  */
+/* .card img {
+    display: block;
+    width: 100%;
+    height: auto;
+} */
+
+
+
+
+/* -- card content edit----------------------------------------- */
+
+.card-content{
+    padding: 0px;
+    text-align: center;
+}
+
+/* ------------------------------------------- */
+
+
+.card-content h2{
+    margin-bottom: 5px;
+}
+.card-content p{
+    margin-bottom: 15px;
+    color: red;
+}
+
+
+.card-content a{
+    display: block;
+    background-color: aqua;
+
+    /* position: absolute;
+    bottom: 0px;
+     */
+
+    text-decoration: none;
+    color: black;
+    padding: 8px 16px;
+}
+
+.card-content a:hover{background-color: rgb(175, 89, 89);color: white;}
+
+.card-content h5{
+    position: absolute;
+
+    background-color: red;
+    top:0px;
+    padding: 4px;
+    border-radius: 8px 1px 8px 1px;
+    color: yellow;
+}
