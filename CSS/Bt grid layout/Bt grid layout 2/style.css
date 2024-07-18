@@ -1,0 +1,49 @@
+
+.grid_container {
+    color:white;
+    font-size: 20px;
+    height: 100vh;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: auto auto auto auto;
+    grid-template-rows: auto auto auto; 
+    text-align: center;
+}
+
+.a1 {
+    background-color: green;
+    grid-row: 1 / 4;
+}
+
+.a2 {
+    background-color: green;
+    grid-column: 2 / 4;
+}
+
+.a3 {
+   background-color: red; 
+}
+
+.a4 {
+    background-color: orange;
+}
+
+.a5 {
+    background-color: red;
+}
+
+.a6 {
+    background-color: green;
+    grid-row: 2 / 4;
+    grid-column: 4 / 5;
+}
+
+.a7 {
+    background-color: red;
+}
+
+.a8 {
+    background-color: orange;
+
+    
+}
