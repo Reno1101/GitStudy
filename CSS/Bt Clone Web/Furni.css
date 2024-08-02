@@ -1,0 +1,123 @@
+body, * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+:root {
+    --green: rgb(59, 93, 79);
+    --white: #f0f2f1;
+    --transparent: rgba(255, 255, 255, 0.295);
+}
+
+/* --------------------------------------------- */
+
+/* nav text styling */
+.nav-logo, .link, .nav-items{
+    font-family: "Montserrat", sans-serif;
+    text-decoration: none;
+}
+
+/* set cursor for logo */
+.nav-logo{
+    cursor: pointer;
+    color:var(--white);
+    font-weight: 800;
+    font-size: 30px;
+}
+
+/* header color & width & padding */
+.header{
+    background-color: var(--green);
+}
+
+.header .container{
+    display:flex;
+    justify-content: space-between;
+    padding: 30px 0px;
+    width: 1300px;
+    margin:auto;
+    align-items: center;
+}
+
+/* right navs styling */
+.header .nav-link-item{
+    display: flex;
+    flex-direction: row;
+    color:var(--white);
+    font-weight: 600;
+    font-size: 16px;
+}
+
+/* nav links styling */
+.nav-links{
+    padding-right: 40px;
+}
+
+.nav-links .link{
+    display: inline-block;
+    padding: 0px 20px;
+    color:var(--transparent);
+}
+
+/* item styling */
+/* how to sizing icon? */
+.nav-items .item{
+    display: inline-block;
+    padding: 0px 0px 0px 30px;
+}
+
+/* --------------------------------------------- */
+
+.hero{
+    background-color: var(--green);
+}
+
+.hero .container{
+    display:flex;
+    padding: 10px 0px;
+    width: 1300px;
+    margin:auto;
+}
+
+.intro{
+    font-family: "Montserrat", sans-serif;
+    text-decoration: none;
+    padding: 100px 10px 0px 0px;
+    color: var(--white);
+}
+
+.intro h1{
+    font-size: 60px;
+}
+
+.intro p{
+    line-height: 2;
+    color:var(--transparent);
+    font-size: 14px;
+    padding: 20px 0px;
+}
+
+/* hero section buttons */
+.shop-now {
+    background-color: rgb(248, 191, 40);
+    color: var(--green);
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: 700;
+    border-radius: 50px;
+  }
+
+
+.explore {
+    border: 3px solid var(--transparent);
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: 700;
+    border-radius: 50px;
+  }

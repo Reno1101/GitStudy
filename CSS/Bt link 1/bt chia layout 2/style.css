@@ -40,13 +40,13 @@ body, *{
     line-height: 200px;
 
     text-align: center;
-    justify-content: space-between;
+    /* justify-content: space-between; */
 }
 
 .items .sidebar{
     background-color:darkcyan;border-radius: 8px;
     width: 20%;
-    margin: 8px;
+    margin: 9px;
 }
 
 .items .content{
