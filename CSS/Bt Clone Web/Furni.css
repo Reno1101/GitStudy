@@ -347,6 +347,11 @@ body, * {
 
 
 /* Why product section ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+.why-section{
+    margin-top: 200px;
+}
+
 .why-section h1{
     font-size: var(--fheader);
     color: var(--black);
