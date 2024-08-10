@@ -1,0 +1,41 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f4f4f4;
+    font-family: Arial, sans-serif;
+}
+
+.collage {
+    position: relative;
+    width: 300px;
+    height: 200px;
+}
+
+.collage-img {
+    position: absolute;
+    width: 100%;
+    height: auto;
+}
+
+.img1 {
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.img2 {
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+}
+
+.img-top {
+    bottom: 0;
+    right: 0;
+    width: 200px;
+    height: auto;
+    z-index: 3;
+}
