@@ -638,7 +638,7 @@ body, * {
 }
 
 .footer .UserInfo input[type=text]:focus {
-    width: 100%;
+    width: 40%;
     border: 5px solid var(--yellow);
   }
 
