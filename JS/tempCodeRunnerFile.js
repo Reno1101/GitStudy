@@ -1,1 +1,1 @@
-${oddCheck(n)}
+a

@@ -1,7 +1,7 @@
 // undone
 // 1)Tính S(n) = 1 + 2 + 3 + ... + n - 1 + n
 
-function sumN(n) {
+function sumN1(n) {
     let sum = 0;
     for (let i = 1; i <= n; i++) {
         sum += i;
@@ -9,12 +9,11 @@ function sumN(n) {
     return sum;
 }
 
-// Ví dụ sử dụng
-function printSum1(n) {
-    console.log(`1.Tổng S(${n}) = 1 + 2 + ... + ${n} là: ${sumN(n)}`);
+function printSumN1(n) {
+    console.log(`1.Tổng S(${n}) = 1 + 2 + ... + ${n} là: ${sumN1(n)}`);
 }
 
-printSum1(10);
+printSumN1(5);
 
 // 2)Tính S(n) = 1^2 + 2^2 + 3^2 + ... + (n-1)^2 + n^2
 
