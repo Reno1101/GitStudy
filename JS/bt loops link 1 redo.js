@@ -186,7 +186,23 @@ printSum5(5);
 // Số hoàn hảo là số có tổng ước số của nó (không tính nó) bằng chính nó. Ví dụ như Số 28 là số 
 // hoàn hảo vì ước chung lớn nhất của 28 (không tính số 28) gồm: 1; 2; 4; 7; 14. mà 1+2+4+7+14=28. 
 
+function perfect(n){
+    if (n <= 1) return false;
+    let sum = 0;
+    for (i = 1; i < n; i++){
+        if (n % i === 0 ){
+            sum += i;
+        }
+    }
+    return sum === n;
+}
 
+
+function printPerfect(n){
+    console.log(`Check n: ${perfect(n)}`);
+}
+
+printPerfect(28);
 
 // Bài 7:
 // Cho 1 số nguyên dương n
