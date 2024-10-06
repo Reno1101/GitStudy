@@ -1,13 +1,22 @@
-function sumN1(n) {
-    let sum = 0;
-    for (let i = 1; i <= n; i++) {
-        sum += i;
+function mirror(str){
+    cleanStr = str.trim().toLowerCase().replace(/\s+/g,'');
+    result = true;
+
+    left = 0;
+    right = clearStr.length - 1;
+
+    while (left < right){
+        if (left !== right){
+            result = false;
+        }
+        left ++;
+        right --;
     }
-    return sum;
+    return result;
 }
 
-function printSumN1(n) {
-    console.log(`1.Tổng S(${n}) = 1 + 2 + ... + ${n} là: ${sumN1(n)}`);
+function printmirror(str){
+    console.log(`mirror: ${mirror(str)}`);   
 }
 
-printSumN1(5);
+printmirror("madam");
