@@ -11,12 +11,13 @@
         + toLowerCase()
         + concat    nối chuỗi
         + trim()    xóa dấu cách ở đầu và cuối
-        + split()   tach chuỗi thành mảng
+        + split()   tach chuỗi thành mảng, có thể dùng điểm chung eg: ",", hoặc cắt từng chữ cái bằng ''.
         + join()    hàm này của mảng, gộp mảng thành chuỗi
         + String search:
             - indexof(), lastIndexOf(), endsWith(), startWith()
         + template string: ``, ${}
-        +charAt()
+        + charAt()
+        + charCodeAt()  -- 
     - Number:
         + Number method: toString(), toFixed()
         + Convert String to Number: Number(), parseFloat(), parseInt(), + (gộp number)
@@ -51,15 +52,15 @@ printTenDem("ngUyeN vAn kim nguyet khAng");
 // Correction chữ in hoa
 
 function chuanHoaTen(n){
-    let a = n.toLowerCase();
-    a = a.slice(0, 1).toUpperCase() + a.slice(1); //viet hoa chu cai dau
+    n = n.toLowerCase();
+    n = n.slice(0, 1).toUpperCase() + n.slice(1); //viet hoa chu cai dau
     //Nguyen + V +
-    for (let i = 1; i < a.length; i++){
-        if (a[i] === " "){  // bat dau tu _van -> 0 _ 1 V 2 a 3 n 4
-            a = a.slice(0, i+1) + a.slice(i+1, i+2).toUpperCase() + a.slice(i+2);
+    for (let i = 0; i < a.length; i++){
+        if (n[i] === " "){  // slice tu đầu 0 đến i+1 (nguyen_)
+            n = n.slice(0, i+1) + n.slice(i+1, i+2).toUpperCase() + n.slice(i+2);
         }
     }
-    return a;
+    return n;
 }
 
 
@@ -205,12 +206,12 @@ function trimmed(str){
 
 
 function printTrim(str){
-    console.log(`Result is : ${trimmed(str)}`);
+    console.log(`Result 1 oooooooooooooooooooois : ${trimmed(str)}`);
 }
 printTrim(" Hello     this      is      JavaScript");
 
 
-//cach 2:
+//cach 2: (sai,lỗi do && sẽ skip qua cả if else)
 
 
 function trimmed2(str){
@@ -235,6 +236,34 @@ function printTrim2(str){
 }
 printTrim2("Hello     this      is      JavaScript");
 
+//Cach 3 de hieu hon
+
+function trimmed3(str){
+
+    n = str.trim();
+    isSpace = false;
+    result = ""
+
+    for(i = 0; i < n.length; i++){
+        if ( n[i] === " " ){
+            if (isSpace === true){
+                result += " ";
+                isSpace = false;
+            }
+        } else if (n[i] !== " "){
+            result += n[i];
+            isSpace = true;
+        }
+    }
+    return result;
+}
+
+
+function printTrim3(str){
+    console.log(`Result 3 is : ${trimmed3(str)}`);
+}
+printTrim3(" Hello     this      is      JavaScript");
+
 
 
 // Bài tập 5: Chuyển đổi sang dạng title
@@ -248,7 +277,7 @@ function titled(n){
 
     for (i = 1; i < m.length; i++){
         if ( m[i] === " "){
-            m = m.slice(0, i+1) + m.slice(i+1, i+2).toUpperCase() + m.slice(i+2);
+            m = m.slice(0, i+1) + m.slice(i+1, i+2).toUpperCase() + m.slice(i+2); //slice tu dau den i+1 luon (0 - i+1)
         }
     }
     return m;
@@ -290,7 +319,29 @@ function printCountedResult(n){
 
 printCountedResult("This is a sentence")
 
+//cachs 2
+function countedWord(n){
+    n = n.trim()
+    let isWord = true;
+    let count = 0;
+    for (i = 0; i < n.length; i++){
+        if (n[i] !== " "){
+            if (isWord === true){
+                count ++;
+                isWord = false;
+            }
+        } else if (n[i] === " "){
+            isWord = true;
+        }
+    }
+    return count;
+}
 
+function printCountedResult2(n){
+    console.log(`Counted sentences: ${countedWord(n)}`);   
+}
+
+printCountedResult2("This is a sentence")
 
 // Bài tập 7: Kiểm tra chuỗi đối xứng
 // Viết một hàm nhận vào một chuỗi và kiểm tra xem chuỗi đó có phải là
