@@ -137,13 +137,13 @@ prMaxMin([3, 7, 2, 5, 9, 1]) //Mảng [3, 7, 2, 5, 9, 1] được truyền vào 
 // In ra màn hình tổng, tích và giá trị trung bình của mảng đó.
 
 function findSumPowerAvr(arr){
-    let sum = 0; pow = 1; avr = 0;
+    let sum = 0; pow = 1; 
     for (i = 0; i < arr.length; i++){
         sum += arr[i];
         pow *= arr[i];
-        avr = sum/2;
     }
-    return {sum, pow,avr};
+    const avr = sum / (arr.length);
+    return {sum, pow, avr};
 }
 
 
@@ -298,8 +298,8 @@ console.log(`Mang push 8 la ${push8([1, 1, 6, 7, 11, 6, 3, 2, 6])}`);
 
 // Sắp xếp mảng tăng dần
 
-function sortAscending(a, b){
-    return a - b;
+function sortAscending(y, x){
+    return x - y;
 }
 
 function sorted(n){
@@ -316,7 +316,7 @@ console.log(`Mang sorted la ${sorted([40,100,1,40,5,25,10])}`);
 
 function isEven(arr){
     for (let i = 0; i < arr.length; i++){
-        if (arr[i] % 2 === arr[i + 1] % 2){//hoac la if (arr[i] % 2 === 0 && arr[i + 1] % 2 === 0)
+        if (arr[i] % 2 === 0 && arr[i + 1] % 2 === 0){
             return "Yes";
         }
     }
@@ -365,7 +365,7 @@ categorize([40,100,1,40,5,25,10,0])
 
 
 function decending(a, b){
-    return a - b
+    return b - a
 }
 
 function printDecending(n){
@@ -386,7 +386,7 @@ console.log(`Decending is ${printDecend([1, 2, 3, 4, 3, 47, 5])}`)
 
 function sortNumbersDescending(...numbers) { //... rest parameter, dùng để nhiều hơn 2 biến
     // Sắp xếp các số trong mảng theo thứ tự giảm dần
-    numbers.sort((a, b) => b - a);
+    numbers.sort((y, x) => x - y);
     
     // In mảng đã sắp xếp
     console.log(numbers);
@@ -405,7 +405,7 @@ sortNumbersDescending(12, 45, 23, 89, 1); // Output: [89, 45, 23, 12, 1]
 function compare( n, arr){
     let count = 0;
     for (i = 0; i < arr.length; i++){
-        if ((n < arr[i])){
+        if (n < arr[i]){
             count++;
         }
     }
@@ -440,9 +440,9 @@ function checkOrder(arr){
 
     for (let i = 0; i < arr.length - 1; i++){
         if (arr[i] > arr[i+1]){
-            descending = false;
-        } else if (arr[i] < arr[i+1]){
             ascending = false;
+        } else if (arr[i] < arr[i+1]){
+            descending = false;
         }
     }
     if (ascending || descending ){
@@ -458,26 +458,27 @@ checkOrder([1, 3, 2, 5, 4]);   // Output: NO
 
 // Bài 3: Khai báo 1 mảng số thực
 // Tính tổng trung bình cộng phần tử có phần nguyên 
-//chẵn trong mảng, nếu không có phần tử có phần nguyên chẵn thì in ra -1.
+// chẵn trong mảng, nếu không có phần tử có phần nguyên chẵn thì in ra -1.
 
 function checkEven(n){
-    let avr = 0;
     let sum = 0;
+    let count = 0;
     for (let i = 0; i < n.length; i++){
-        if (n[i] % 2 === 0){
+        let c = parseInt(n[i]);
+        if (c % 2 === 0){
             sum += n[i];
-            avr = sum/2;
+            count++;
         }
     }
     if (sum === 0){
         console.log(-1);
     } else {
-        console.log(`Avr la`, avr);
+        console.log(`Avr la `, sum / count);
     }
     
 }
 checkEven([0, 2, 4, 5, 6, 12, 20, 5, 4, 3])
-
+//?????????????????????????????????????????
 
 // Sắp xếp mảng tăng dần và in ra màn hình
 function sortAscending2(arr){
@@ -517,10 +518,10 @@ console.log(`array so le la ${toOddArray([0, 2, 4, 5, 6, 12, 20, 5, 4, 3])}`);
 // bc 2:fuction tim prime gan nhat
 // b3 3:funtion chay array
 
-function isPrime(k){
-    if (k <= 1) return false;
-    for (let i = 2; i < k; i++){
-        if (k % i === 0){
+function isPrime(n){
+    if (n <= 1) return false;
+    for (let i = 2; i < n; i++){
+        if (n % i === 0){
             return false;
         }
     }
@@ -576,7 +577,7 @@ function ageSort(){
         { name: 'name5', age: 27 }
     ];
 
-    people.sort((a,b) => b.age - a.age)
+    people.sort((y,x) => x.age - y.age)
     console.log(people);
 
 
@@ -636,10 +637,17 @@ function bt04(){
 
     const groupedPeople = people.reduce((acc, x) => {
         // Kiểm tra xem người với cùng tên đã có trong đối tượng chưa
-        if (acc[x.name]) {
-            acc[x.name].count += x.count; // Cộng dồn count nếu đã tồn tại
+        // if (acc[x.name]) {
+        //     acc[x.name].count += x.count; // Cộng dồn count nếu đã tồn tại
+        // } else {
+        //     acc[x.name] = {...x}; // Copy object  
+        // }
+        // return acc;
+        const index = acc.findIndex((v) => v.name === x.name);
+        if (index >= 0){
+            acc[index].count += x.count;
         } else {
-            acc[x.name] = {...x}; // Copy object  
+            acc.push(x);
         }
         return acc;
     }, []);
@@ -748,7 +756,8 @@ function bt3(){
   // ]
   
     console.log(topics.reduce((b,a) => {
-        return b.concat(a.posts) // duyệt qua a.posts rồi lưu vào b, rồi concat
+        b.push(...a.posts)
+        return b; // duyệt qua a.posts rồi lưu vào b
     },[]));
 }
 
@@ -812,8 +821,11 @@ function bt7() {
     const arrCount = [1, 2, 3, 4, 5, 2, 3, 4, 2, 2, 7, 8, 8];
     
     const result = arrCount.reduce((acc, x) => {
-        // Kiểm tra xem phần tử đã tồn tại trong đối tượng chưa, nếu có tăng đếm lên, nếu chưa khởi tạo đếm là 1
-        acc[x] = acc[x] + 1 || 1;
+        if (acc[x]){
+            acc[x] += 1;
+        } else {
+            acc[x] = 1;
+        }
         return acc;
     }, {});
 
