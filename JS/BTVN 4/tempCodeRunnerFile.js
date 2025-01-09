@@ -1,0 +1,1 @@
+let digit = num % 10; // Lấy chữ số cuối cùng

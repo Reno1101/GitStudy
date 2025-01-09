@@ -34,10 +34,10 @@ function isSuperPrimeNumber(num) {
 }
 
 // Hàm tìm các số siêu nguyên tố trong một phạm vi
-function findSuperPrimeNumbers(limit) {
+function findSuperPrimeNumbers() {
     let superPrimes = [];
     for (let i = 2; i <= limit; i++) {
-        if (isPrime(i) && isSuperPrimeNumber(i)) { // Số nguyên tố và các chữ số đều nguyên tố
+        if (isPrime(i) && isSuperPrimeNumber(i)) { // Số nguyên tố và các chữ số đều nguyên tố => siêu siêu nguyên tố
             superPrimes.push(i);
         }
     }
@@ -99,7 +99,7 @@ function removeOddNumbers(arr) {
 
 function processArray(arr) {
     // điều kiện
-    if (arr < 3 || arr > 100) {
+    if (arr.length < 3 || arr.length > 100) {
         console.log("Số phần tử phải nằm trong khoảng từ 3 đến 100.");
         return;
     }
@@ -128,33 +128,39 @@ processArray ([6, 28]);
 // Ngược lại: Xóa phần tử có giá trị gần với giá trị trung bình trong mảng nhất
 
 
-function removeClosestToAverage(array){
+function removeClosestToAverage(arr) {
+    const n = arr.length;
 
-    if (array.length === 0) {
-        console.log("Mảng rỗng!");
-        return array;
+    if (n.length <= 3 || n.length > 100) {
+        console.log("Độ dài mảng không hợp lệ. n phải lớn hơn 3 và nhỏ hơn hoặc bằng 100.");
+        return;
     }
 
-    // Tính giá trị trung bình
-    const average = array.reduce((sum, num) => sum + num, 0) / array.length;
+    // Tính avr của mảng
+    const average = arr.reduce((sum, num) => sum + num, 0) / n;
+    // Tìm các phần tử bằng giá trị avr
 
-    let closestIndex = 0;// khởi tạo giá trị closest
-    let minDiff = Math.abs(array[0] - average);// khởi tạo giá trị min
+    const countEqualAverage = arr.filter(num => num === average).length; //.length để đếm số lần trả ra
+    if (countEqualAverage > 0) {
 
-    for (let i = 1; i < array.length; i++) {// index chạy qua array
-        const difference = Math.abs(array[i] - average);
+        console.log(`Số phần tử bằng giá trị trung bình (${average}): ${countEqualAverage}`);
+    } else {
+        // Tìm phần tử gần nhất với avr
+        const closestValue = arr.reduce((acc, x) =>
+            { if (Math.abs(x - average) < Math.abs(acc - average)) {
+                x
+                } else { 
+                    acc
+                }
+            }
+        );
 
-        if (difference < minDiff) {
-            minDiff = difference;
-            closestIndex = i;
-        }
+            // Xóa phần tử gần với avr nhất
+        const newArray = arr.filter(num => num !== closestValue);
+        console.log(`Không có phần tử nào bằng giá trị trung bình.`);
+        console.log(`Mảng sau khi xóa phần tử gần với trung bình (${average}) nhất:`, newArray);
     }
-
-    // Xóa phần tử gần trung bình nhất
-    array.splice(closestIndex, 1);
-
-    console.log(array);
-    return array;
 }
+
 
 removeClosestToAverage([7, 5, 3, 1, 5, 9]);
