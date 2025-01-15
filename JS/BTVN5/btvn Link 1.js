@@ -161,3 +161,15 @@ const {profile: {email: emailUser2}} = user2;
 console.log(rolesUser1, rolesUser2, emailUser1, emailUser2);
   
 //3
+
+function updateUser(x, updatedInfo){
+  return{
+    ...x,
+    ...updatedInfo,
+  }
+}
+
+
+const updatedUser = updateUser(user1, {profile:{ email: "new_email@example.com", phone: "000000000" }});
+
+console.log(updatedUser);
