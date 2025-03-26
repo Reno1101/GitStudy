@@ -1,11 +1,13 @@
 const ip_content = document.getElementById("ip_content");
-const KEY_JOBS = "jobs"
 
+const KEY_JOBS = "jobs"
 const str_jobs = localStorage.getItem(KEY_JOBS);
 const list_jobs = str_jobs ? JSON.parse(str_jobs) : [];
 
 const ul_jobs = document.getElementById("ul_jobs");
 
+
+// add press enter to add
 ip_content.addEventListener("keyup", (e) => {
     console.log(e.key);
     
