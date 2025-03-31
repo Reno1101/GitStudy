@@ -22,14 +22,13 @@ function add(){
 
 function render(){
     table = `<tr>
-                <th>ID</th>
+                <th>Id</th>
                 <th>Name</th>
                 <th>Age</th>
             </tr>`
     for(let i = 0; i < data.length; i++){
         table += `<tr>
-                <td>${data[i].Id}</td>
-                <td>${data[i].Name}</td>
+                <td>${data[i].Id}</td>                <td>${data[i].Name}</td>
                 <td>${data[i].Age}</td>
             </tr>`
     }
