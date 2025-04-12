@@ -177,7 +177,9 @@ function deleteJob(index){
     //lay "data" tu local storage parse sang obj de xu ly, neu khong data =[] => co the de Global
     const str_jobs = localStorage.getItem("jobs");
     const data = str_jobs ? JSON.parse(str_jobs) : [];
-    data.splice(index,1)
+    if(confirm("confirm deletion?")){
+        data.splice(index,1)
+    }
     localStorage.setItem("jobs", JSON.stringify(data));
     render()
 }
