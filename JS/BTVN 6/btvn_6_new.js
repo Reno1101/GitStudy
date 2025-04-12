@@ -4,6 +4,18 @@
 
 //const data = localStorage.getItem("jobs") ? JSON.parse(localStorage.getItem("jobs")  ) : [];
 
+//document.getElementById("update").style.display = "none" //hide update button (globally)
+
+
+
+
+function resetInput(){
+    document.getElementById("job").value=""
+    document.getElementById("day").value=""
+}
+
+
+
 
 
 // add press enter to add
@@ -56,12 +68,13 @@ function add(){
 
         //or data.push({job : item_job, day : item_day})
 
+        //cap nhat du lieu tron local storage sau khi co [data]
         localStorage.setItem("jobs", JSON.stringify(data));
 
     }
 
     render()
-    clear()
+    resetInput()
 }
 
 
@@ -73,6 +86,7 @@ function render(){
     const data = str_jobs ? JSON.parse(str_jobs) : [];
 
     table = `<tr>
+                <th>id</th>
                 <th>jobs</th>
                 <th>days</th>
                 <th>Action<th>
@@ -86,6 +100,7 @@ function render(){
     // }
     data.map((value, index) => {
         table += `<tr>
+            <td>${index+1}</td>
             <td>${value.job}</td>
             <td>${value.day}</td>
             <td> 
@@ -94,17 +109,24 @@ function render(){
             <td>
         </tr>` 
     })
+    // Creates an Edit button.
+    // When clicked, it calls the editJob(index) function.
+    // ${index} again refers to the job's position in the array.
 
-    //
     document.getElementById("render").innerHTML = table
 }
+
+
+// //usage of [index]
+// Clicking "Delete" on "Task 2" passes index = 1 to deleteJob(1).
+// Clicking "Edit" on "Task 3" passes index = 2 to editJob(2).
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// delete
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// edit
 
 
-document.getElementById("update").style.display = "none" //hide update button (globally)
-
+//button on click => function editJob(2), 2 is the index
 
 function editJob(index){
     //lay "data" tu local storage parse sang obj de xu ly, neu khong data =[] => co the de Global
@@ -112,38 +134,51 @@ function editJob(index){
     const data = str_jobs ? JSON.parse(str_jobs) : [];
 
 
-    //truyen du lieu len form input
+    //Fill the form with the job data
     document.getElementById("job").value = data[index].job
     document.getElementById("day").value = data[index].day
+
+    //truyen value [index] locate tại nơi ấn update ->> vao form [hiddenindex] ->> <input type="hiddenIndex" value ="[index duoc truyen]"> 
+    //Store the index in a hidden input for later use in update()
+    document.getElementById("hiddenIndex").value = index
 
     document.getElementById("add").style.display = "none" // hide add button
     document.getElementById("update").style.display = "inline-block" //show update button
 
 }
 
+function update(){
+    //lay "data" tu local storage parse sang obj de xu ly, neu khong data =[] => co the de Global
+    const str_jobs = localStorage.getItem("jobs");
+    const data = str_jobs ? JSON.parse(str_jobs) : [];
+
+    //truyen lai du lieu da sua vao vi tri .value tai [hiddenindex]
+    data[document.getElementById("hiddenIndex").value] = {
+        job: document.getElementById("job").value,
+        day: document.getElementById("day").value,
+    }
+
+    //cap nhat du lieu tron local storage sau khi co [data]
+    localStorage.setItem("jobs", JSON.stringify(data));
 
 
 
+    document.getElementById("add").style.display = "inline-block" // hide add button
+    document.getElementById("update").style.display = "none" //show update button
 
-
-
-
-function clear(){
-    document.getElementById("job").value = "";
-    document.getElementById("day").value = "";
-
+    render()
+    resetInput()
 }
-
-
-
-
 
 
 
 
 function deleteJob(index){
-
+    //lay "data" tu local storage parse sang obj de xu ly, neu khong data =[] => co the de Global
+    const str_jobs = localStorage.getItem("jobs");
+    const data = str_jobs ? JSON.parse(str_jobs) : [];
+    data.splice(index,1)
+    localStorage.setItem("jobs", JSON.stringify(data));
+    render()
 }
-
-
 
