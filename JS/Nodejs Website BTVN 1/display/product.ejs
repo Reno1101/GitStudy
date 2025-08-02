@@ -3,22 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Users List</title>
+    <link rel="stylesheet" href="css/product.css">
 </head>
 <body>
     <%- include("menu.ejs") %>
-    <h1>Day la trang product</h1>
+    <h1>Users List</h1>
 
     <div class="list_product">
-        <% products.forEach(function(product) {%>
+        <% products.forEach(function(user) {%>
             <div class="product">
-                <img src="<%= product.img %>" alt="Product Image">
-                <h2><%= product.name %></h2>
-                <p>Gia: <%= product.price %></p>
+                <div class="user-avatar">
+                    <img src="https://via.placeholder.com/150/007bff/ffffff?text=<%= user.name.charAt(0) %>" alt="User Avatar">
+                </div>
+                <h2><%= user.name %></h2>
+                <p><strong>Username:</strong> <%= user.username %></p>
+                <p><strong>Email:</strong> <%= user.email %></p>
+                <p><strong>Phone:</strong> <%= user.phone %></p>
+                <p><strong>Website:</strong> <a href="http://<%= user.website %>" target="_blank"><%= user.website %></a></p>
             </div>
         <% }) %>
     </div>
-
 
 </body>
 </html>

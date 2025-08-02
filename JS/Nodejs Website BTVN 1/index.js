@@ -7,13 +7,21 @@ app.set("views", "./display");
 
 app.use(express.static("./public"));
 
+const axios = require('axios');
 
-app.get('/home', (req, res) => {
-  res.render("home.ejs")
+app.get('/home', async (req, res) => {
+  try {
+    // Fetch cat data from the API
+    const catResponse = await axios.get('https://api.thecatapi.com/v1/images/search?limit=10&breed_ids=beng&api_key=REPLACE_ME');
+    const cats = catResponse.data;
+    
+    res.render("home.ejs", { cats: cats });
+  } catch (error) {
+    console.error('Error fetching cat data:', error);
+    res.render("home.ejs", { cats: [] });
+  }
 });
 
-
-const axios = require('axios');
 
 app.get('/product', async (req, res) => {
   try {
