@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <%- include("menu.ejs") %>
+    <h1>Day la trang product</h1>
+
+    <div class="list_product">
+        <% products.forEach(function(product) {%>
+            <div class="product">
+                <img src="<%= product.img %>" alt="Product Image">
+                <h2><%= product.name %></h2>
+                <p>Gia: <%= product.price %></p>
+            </div>
+        <% }) %>
+    </div>
+
+
+</body>
+</html>
