@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Conway's Game of Life - 3D Mapped</title>
+  <style>
+    body {
+      margin: 0;
+      background: #111;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+      color: #fff;
+      font-family: sans-serif;
+    }
+    #canvas {
+      border: 1px solid #333;
+      background: #000;
+    }
+    #controls {
+      margin: 10px;
+    }
+    select, button {
+      margin: 0 5px;
+      padding: 5px;
+      background: #222;
+      color: #fff;
+      border: 1px solid #555;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div id="controls">
+    <label for="shape">Mapping:</label>
+    <select id="shape">
+      <option value="plane">Plane</option>
+      <option value="sphere">Sphere</option>
+      <option value="cylinder">Cylinder</option>
+      <option value="torus">Torus</option>
+      <option value="cube">Cube</option>
+    </select>
+    <button id="randomize">Randomize</button>
+  </div>
+  <canvas id="canvas" width="600" height="600"></canvas>
+
+  <script>
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+    const shapeSelect = document.getElementById("shape");
+    const randomizeBtn = document.getElementById("randomize");
+
+    const cols = 60, rows = 60;
+    let grid = Array.from({ length: rows }, () =>
+      Array.from({ length: cols }, () => Math.random() > 0.8 ? 1 : 0)
+    );
+
+    function nextGen(grid) {
+      const newGrid = grid.map(arr => [...arr]);
+      for (let y = 0; y < rows; y++) {
+        for (let x = 0; x < cols; x++) {
+          let neighbors = 0;
+          for (let dy = -1; dy <= 1; dy++) {
+            for (let dx = -1; dx <= 1; dx++) {
+              if (dx === 0 && dy === 0) continue;
+              const ny = (y + dy + rows) % rows;
+              const nx = (x + dx + cols) % cols;
+              neighbors += grid[ny][nx];
+            }
+          }
+          if (grid[y][x] === 1 && (neighbors < 2 || neighbors > 3))
+            newGrid[y][x] = 0;
+          else if (grid[y][x] === 0 && neighbors === 3)
+            newGrid[y][x] = 1;
+        }
+      }
+      return newGrid;
+    }
+
+    function mapTo3D(i, j, shape) {
+      const u = i / cols, v = j / rows;
+      const angle = performance.now() * 0.0005;
+
+      if (shape === "plane") {
+        return {
+          x: (u - 0.5) * canvas.width,
+          y: (v - 0.5) * canvas.height,
+          z: 0
+        };
+      }
+
+      if (shape === "sphere") {
+        const theta = u * 2 * Math.PI;
+        const phi = v * Math.PI;
+        const r = 250;
+        return {
+          x: r * Math.sin(phi) * Math.cos(theta),
+          y: r * Math.cos(phi),
+          z: r * Math.sin(phi) * Math.sin(theta)
+        };
+      }
+
+      if (shape === "cylinder") {
+        const theta = u * 2 * Math.PI;
+        const y = (v - 0.5) * 400;
+        const r = 200;
+        return {
+          x: r * Math.cos(theta),
+          y,
+          z: r * Math.sin(theta)
+        };
+      }
+
+      if (shape === "torus") {
+        const R = 200, r = 70;
+        const theta = u * 2 * Math.PI;
+        const phi = v * 2 * Math.PI;
+        return {
+          x: (R + r * Math.cos(phi)) * Math.cos(theta),
+          y: (R + r * Math.cos(phi)) * Math.sin(theta),
+          z: r * Math.sin(phi)
+        };
+      }
+
+      if (shape === "cube") {
+        const x = (u - 0.5) * 400;
+        const y = (v - 0.5) * 400;
+        const z = ((i + j) % 2 ? 200 : -200);
+        return { x, y, z };
+      }
+    }
+
+    function project3D(x, y, z) {
+      const scale = 600 / (600 + z + 400);
+      return {
+        x: canvas.width / 2 + x * scale,
+        y: canvas.height / 2 + y * scale,
+        size: scale * 6
+      };
+    }
+
+    function draw(grid, shape) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const points = [];
+      for (let y = 0; y < rows; y++) {
+        for (let x = 0; x < cols; x++) {
+          if (grid[y][x] === 1) {
+            const p3d = mapTo3D(x, y, shape);
+            const p2d = project3D(p3d.x, p3d.y, p3d.z);
+            points.push(p2d);
+          }
+        }
+      }
+      points.sort((a, b) => b.size - a.size);
+      ctx.fillStyle = "#0f0";
+      for (const p of points) {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    function loop() {
+      grid = nextGen(grid);
+      draw(grid, shapeSelect.value);
+      requestAnimationFrame(loop);
+    }
+
+    randomizeBtn.onclick = () => {
+      grid = Array.from({ length: rows }, () =>
+        Array.from({ length: cols }, () => Math.random() > 0.8 ? 1 : 0)
+      );
+    };
+
+    loop();
+  </script>
+</body>
+</html>

@@ -3,30 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cat Gallery - Home</title>
+    <title>Document</title>
     <link rel="stylesheet" href="css/home.css">
 </head>
 <body>
     <%- include("menu.ejs") %>
-    <div class="container">
-        <h1>Cat Gallery</h1>
-        <p>Bengal cats from The Cat API</p>
-        
-        <div class="cat-grid">
-            <% if (typeof cats !== 'undefined' && cats.length > 0) { %>
-                <% cats.forEach(function(cat) { %>
-                    <div class="cat-card">
-                        <img src="<%= cat.url %>" alt="Bengal Cat" class="cat-image">
-                        <div class="cat-info">
-                            <p>ID: <%= cat.id %></p>
-                            <p>Size: <%= cat.width %> x <%= cat.height %></p>
-                        </div>
-                    </div>
-                <% }); %>
-            <% } else { %>
-                <p>No cat images available at the moment.</p>
-            <% } %>
-        </div>
-    </div>
+    <h1>Day la trang chu</h1>
+    asjhfkahf
 </body>
 </html>
